@@ -1,0 +1,39 @@
+min_ver: '4.0.0'
+ja4:
+  # if 'allow' is defined, whitelist mode is activated
+  allow:
+  deny:
+    - {b: 'e8f1e7e78f70'}
+    - {b: '9dc949149365'} # CensysInspect / Go-http-client
+    - {b: '85036bcba153'}
+    - {b: 'c7886603b240'} # Python requests 3.10
+    - {b: '2d7513195f68'}
+    - {b: 'e8a523a41297'} # Googlebot
+    - {b: '1ce71f0edbb1'} # Java 8.0
+    - {b: 'a33745022dd6'}
+    - {b: '231e334592e8'} # bingbot
+    - {b: '76e208dd3e22'} # curl
+    - {b: 'e18388e7f3a3'}
+    - {b: '77b304177063'}
+    - {b: '9e336f1a53ca'}
+    - {b: 'bd868743f55c'}
+    - {b: '834380eab35e'}
+    - {b: '730fb1b0ac6a'} # Python requests 2.27
+    - {b: 'd524c25c267f'}
+    - {b: '018971650b2c'} # Python aiohttp 3.9
+    - {b: '2b729b4bf6f3'} # bingbot
+    - {b: 'cbb2034c60b8'} # golang 1.22
+    - {b: '75366a718a82'}
+    - {b: '08d6d9b33cd7'}
+    - {b: 'a4993b992045'}
+    - {b: '131602cb7446'}
+user_agent:
+  # if 'allow' is defined, whitelist mode is activated
+  allow:
+    - {browser: 'Chrome', version: '>= 135'} # ja4_b: 8daaf6152771
+    - {browser: 'Firefox', version: '>= 135.0'} # ja4_b: 5b57614c22b0
+    - {browser: 'Edge', version: '>= 135.0'} # ja4_b: 8daaf6152771
+    - {browser: 'Opera', version: '>= 135.0'}
+    - {browser: 'Safari', version: '>= 16.0'} # ja4_b: a09f3c656075 (only iphone?)
+  deny:
+    - {browser: 'Headless'}

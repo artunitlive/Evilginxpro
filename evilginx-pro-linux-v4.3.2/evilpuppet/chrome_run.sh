@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ -z "${CHROME_EXEC_PATH}" ]]; then
+  echo "CHROME_EXEC_PATH environment variable must be set and specify the path to the Chrome browser executable (e.g. /home/user/evilpuppet-chrome)."
+  exit -1
+fi
+
+if [[ -z "${CHROME_USER_DIR}" ]]; then
+  echo "CHROME_USER_DIR environment variable must be set and specify the path to the temporary user profile directory used for Evilpuppet (e.g. /home/user/evilpuppet-chrome)."
+  exit -1
+fi
+
+"$CHROME_EXEC_PATH" --allow-pre-commit-input --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-breakpad --disable-client-side-phishing-detection --disable-component-update --disable-dev-shm-usage --disable-hang-monitor --disable-infobars --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-search-engine-choice-screen --disable-sync --enable-automation --export-tagged-pdf --generate-pdf-document-outline --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --disable-features=Translate,AcceptCHFrame,MediaRouter,OptimizationHints,ProcessPerSiteUpToMainFrameThreshold,IsolateSandboxedIframes --enable-features=PdfOopif --user-data-dir="$CHROME_USER_DIR" about:blank --disable-blink-features=AutomationControlled --remote-debugging-port=58000

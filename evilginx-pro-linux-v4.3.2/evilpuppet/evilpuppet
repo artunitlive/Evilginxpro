@@ -1,0 +1,66 @@
+#!/bin/bash -e
+
+#trap 'if [[ ! $? -eq 0 ]]; then echo "error: $?" fi' EXIT
+
+EVILPUPPET_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+is_root () {
+    return $(id -u)
+}
+
+install() {
+    if ! is_root; then
+        echo "error: install needs to be ran as root!"
+        exit 1
+    fi
+
+}
+
+run() {
+    EVILPUPPET_PATH=$EVILPUPPET_DIR"/index.js"
+
+    if is_root; then
+        echo "error: run this script as a normal user, not as root!"
+        exit 1
+    fi
+
+    if [[ ! -f $EVILPUPPET_PATH ]]; then
+        echo "error: evilpuppet script not found at: $EVILPUPPET_PATH"
+        return
+    fi
+
+    if [[ -z $(command -v nvm) ]]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    fi
+
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+    nvm install 18
+    nvm use 18
+
+    npm install
+    npm start
+}
+
+if [[ $# -eq 0 ]]; then
+    echo "usage: $0 <install|run>"
+    exit 1
+fi
+
+COMMAND=$1
+
+case $COMMAND in
+    "install")
+        install
+        ;;
+
+    "run")
+        run
+        ;;
+
+    *)
+        echo "error: unknown command: $COMMAND"
+        ;;
+esac
